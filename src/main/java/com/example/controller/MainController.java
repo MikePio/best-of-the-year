@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.model.Movie;
@@ -73,25 +74,53 @@ public class MainController {
   @GetMapping("/movies") // rotta http://localhost:8080/movies
   public String movies(Model model){
     
-    final String movies = getBestMovies() // ottiene la lista dei migliori film utilizzando il metodo getBestMovies()
+    final String moviesString = getBestMovies() // ottiene la lista dei migliori film utilizzando il metodo getBestMovies()
       .stream() // converte la lista in uno stream
       .map(m -> m.getTitle()) // estrae i titoli dei film dalla lista
       .collect(Collectors.joining(", "));  // combina i titoli separati da virgola in una singola stringa
-      model.addAttribute("movies", movies); // viene aggiunta la stringa dei titoli in modo che essa venga visualizzata nella pagina html "movies" 
+      model.addAttribute("moviesString", moviesString); // viene aggiunta la stringa dei titoli in modo che essa venga visualizzata nella pagina html "movies" 
       
+      List<Movie> moviesList = getBestMovies();
+      model.addAttribute("moviesList", moviesList); // aggiunge la lista di canzoni come attributo "movieList"
+
       return "movies"; // nome della view(/pagina HTML) da visualizzare
   }
 
   @GetMapping("/songs") // rotta http://localhost:8080/songs
   public String songs(Model model){
 
-    final String songs = getBestSongs() // ottiene la lista delle migliori canzoni utilizzando il metodo getBestSongs()
+    final String songsString = getBestSongs() // ottiene la lista delle migliori canzoni utilizzando il metodo getBestSongs()
       .stream() // converte la lista in uno stream
       .map(m -> m.getTitle()) // estrae i titoli delle canzoni dalla lista
       .collect(Collectors.joining(", ")); // combina i titoli separati da virgola in una singola stringa
-      model.addAttribute("songs", songs); // viene aggiunta la stringa dei titoli in modo che essa venga visualizzata nella pagina html "songs" 
+      model.addAttribute("songsString", songsString); // viene aggiunta la stringa dei titoli in modo che essa venga visualizzata nella pagina html "songs" 
       
+      List<Song> songsList = getBestSongs();
+      model.addAttribute("songsList", songsList); // aggiunge la lista di canzoni come attributo "songsList"
+
       return "songs"; // nome della view(/pagina HTML) da visualizzare
+  }
+
+  @GetMapping("/movies/{id}")
+  public String getMovieDetails(@PathVariable int id, Model model){
+
+    Movie movieId = getBestMovies().get(id);
+    String movieTitle = movieId.getTitle();
+
+    model.addAttribute("movieTitle", movieTitle);
+
+    return "movie-details";
+  }
+
+  @GetMapping("/songs/{id}")
+  public String getSongDetails(@PathVariable int id, Model model){
+
+    Song songId = getBestSongs().get(id);
+    String songTitle = songId.getTitle();
+
+    model.addAttribute("songTitle", songTitle);
+
+    return "song-details";
   }
 
 }

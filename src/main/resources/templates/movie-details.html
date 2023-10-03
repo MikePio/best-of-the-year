@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Songs</title>
+<title>Movie</title>
 <style>
 	body{
 		background-color: #303030;
@@ -10,7 +10,7 @@
 		font-family: Arial, Helvetica, sans-serif;
 	}
 
-	h1{
+	span{
 		color: #4548FF;
 
 	}
@@ -19,28 +19,23 @@
 </head>
 <body>
 
-  <h1>Movies</h1>
+	<h1>Best movies of the year: </h1>
 
-	<h2>Best movies of the year: </h2>
+  <h2>Movie: <span>[[${movieTitle}]]</span></h2>
 
   <!-- soluzione 1 -->
-  <!-- <p>[[${movies}]]</p> -->
+  <p>[[${movies}]]</p>
   <!-- soluzione 2 -->
 	<!-- <p th:text="${movies}"></p> -->
-
-	<!-- soluzione 3 -->
-	<ul>
-		<li th:each="movie, index : ${moviesList}">
-			<a th:href="@{/movies/{id}(id=${index.index})}" th:text="${movie.title}"></a>
-		</li>
-	</ul>
 
   <!-- soluzione 1 -->
 	<a href="/">Home</a>
   <!-- soluzione 2 -->
   <!-- <a th:href="@{/}">Home</a> -->
-
+  
 	<a href="/songs">Songs</a>
+	<a href="/movies">Movies</a>
+	<a href="/step1">Credits</a>
 
 </body>
 </html>

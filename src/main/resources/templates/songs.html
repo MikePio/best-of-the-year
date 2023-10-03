@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Songs</title>
-<style>
-	body{
-		background-color: #303030;
-		color: white;
-		font-family: Arial, Helvetica, sans-serif;
-	}
+	<meta charset="UTF-8">
+	<title>Songs</title>
+	<style>
+		body {
+			background-color: #303030;
+			color: white;
+			font-family: Arial, Helvetica, sans-serif;
+		}
 
-	h1{
-		color: #4548FF;
+		h1 {
+			color: #4548FF;
 
-	}
-
-</style>
+		}
+	</style>
 </head>
+
 <body>
 
-  <h1>Songs</h1>
+	<h1>Songs</h1>
 
 	<s2>Best songs of the year: </s2>
 
-  <!-- soluzione 1 -->
-  <p>[[${songs}]]</p>
-  <!-- soluzione 2 -->
-	<!-- <p th:text="${songs}"></p> -->
 
-  <!-- soluzione 1 -->
+	<!-- soluzione 1 -->
+	<!-- <p>[[${songsString}]]</p> -->
+	<!-- soluzione 2 -->
+	<!-- <p th:text="${songsString}"></p> -->
+
+	<!-- soluzione 3 -->
+	<ul>
+		<li th:each="song, index : ${songsList}">
+			<a th:href="@{/songs/{id}(id=${index.index})}" th:text="${song.title}"></a>
+		</li>
+	</ul>
+
+	<!-- soluzione 1 -->
 	<a href="/">Home</a>
-  <!-- soluzione 2 -->
-  <!-- <a th:href="@{/}">Home</a> -->
+	<!-- soluzione 2 -->
+	<!-- <a th:href="@{/}">Home</a> -->
 
 	<a href="/movies">Movies</a>
 
 </body>
+
 </html>
