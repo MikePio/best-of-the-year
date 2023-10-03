@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Step 1</title>
+<title>Home</title>
 <style>
 	body{
 		background-color: #303030;
@@ -10,25 +10,27 @@
 		font-family: Arial, Helvetica, sans-serif;
 	}
 
-	h1, span{
-		/* color: #3D3FA4; */
+	h1{
 		color: #4548FF;
+
 	}
 
 </style>
 </head>
 <body>
 
-  <h1>Credits</h1>
+  <h1>Home</h1>
 
-	<h2>Best of the year by: <span>[[${name}]]</span></h2>
-
-	<a href="/">Home</a>
-	<br>
+  <!-- soluzione 1 -->
+  <h2>[[${titleHomePage}]]</h2>
+  <!-- soluzione 2 -->
+	<!-- <h2 th:text="${titleHomePage}"></h2> -->
+  
+  <a href="/movies">Movies</a>
+  <br>
 	<a href="/songs">Songs</a>
-	<br>
-	<a href="/movies">Movies</a>
-
+  <br>
+  <a href="/step1">Credits</a>
 
 </body>
 </html>

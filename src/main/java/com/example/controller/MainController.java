@@ -2,6 +2,7 @@ package com.example.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,14 +14,24 @@ import com.example.model.Song;
 
 @Controller
 public class MainController {
+
+  // @GetMapping("/")
+  // @ResponseBody // * serve per restituire SOLO codice HTML
+  // public String PrintName(){
+
+  //   final String titleHomePage = "Benvenuto! <br> Aggiungi \"/step1\" all'url ";
+
+  //   return "<html><body><h1>" + titleHomePage + "</h1></body></html>";
+  // }
 	
   @GetMapping("/")
-  @ResponseBody
-  public String PrintName(){
+  public String PrintName(Model model){
 
-    final String titleHomePage = "Benvenuto! <br> Aggiungi \"/step1\" all'url ";
+    final String titleHomePage = "Welcome! \n Choose what to see:";
 
-    return "<html><body><h1>" + titleHomePage + "</h1></body></html>";
+    model.addAttribute("titleHomePage", titleHomePage);
+
+    return "home";
   }
 
   @GetMapping("/step1")
@@ -59,6 +70,28 @@ public class MainController {
     return songs;
   }
 
-  // @GetMapping("/movies")
-  // @GetMapping("/songs")
+  @GetMapping("/movies") // rotta http://localhost:8080/movies
+  public String movies(Model model){
+    
+    final String movies = getBestMovies() // ottiene la lista dei migliori film utilizzando il metodo getBestMovies()
+      .stream() // converte la lista in uno stream
+      .map(m -> m.getTitle()) // estrae i titoli dei film dalla lista
+      .collect(Collectors.joining(", "));  // combina i titoli separati da virgola in una singola stringa
+      model.addAttribute("movies", movies); // viene aggiunta la stringa dei titoli in modo che essa venga visualizzata nella pagina html "movies" 
+      
+      return "movies"; // nome della view(/pagina HTML) da visualizzare
+  }
+
+  @GetMapping("/songs") // rotta http://localhost:8080/songs
+  public String songs(Model model){
+
+    final String songs = getBestSongs() // ottiene la lista delle migliori canzoni utilizzando il metodo getBestSongs()
+      .stream() // converte la lista in uno stream
+      .map(m -> m.getTitle()) // estrae i titoli delle canzoni dalla lista
+      .collect(Collectors.joining(", ")); // combina i titoli separati da virgola in una singola stringa
+      model.addAttribute("songs", songs); // viene aggiunta la stringa dei titoli in modo che essa venga visualizzata nella pagina html "songs" 
+      
+      return "songs"; // nome della view(/pagina HTML) da visualizzare
+  }
+
 }

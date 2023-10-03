@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Songs</title>
+<style>
+	body{
+		background-color: #303030;
+		color: white;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+
+	h1{
+		color: #4548FF;
+
+	}
+
+</style>
+</head>
+<body>
+
+  <h1>Movies</h1>
+
+	<h2>Best movies of the year: </h2>
+
+  <!-- soluzione 1 -->
+  <p>[[${movies}]]</p>
+  <!-- soluzione 2 -->
+	<!-- <p th:text="${movies}"></p> -->
+
+  <!-- soluzione 1 -->
+	<a href="/">Home</a>
+  <!-- soluzione 2 -->
+  <!-- <a th:href="@{/}">Home</a> -->
+
+	<a href="/songs">Songs</a>
+
+</body>
+</html>

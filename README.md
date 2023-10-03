@@ -21,7 +21,7 @@ Aggiungere al controller altri due metodi, che rispondono agli url:
 - `/movies`
 - `/songs`
 
-In ognuno di questi *metodi* aggiungere al `model` un attributo di tipo stringa che rappresentera' la lista di `movie`/`song` seaprati da virgola (utilizzare i `metodi privati` dello [[#Step 2]] per recuperare la lista di `movie`/`song`).
+In ognuno di questi *metodi* aggiungere al `model` un attributo di tipo stringa che rappresenterà la lista di `movie`/`song` separati da virgola (utilizzare i `metodi privati` dello [[#Step 2]] per recuperare la lista di `movie`/`song`).
 
 Creare i rispettivi template Thymeleaf per rappresentare le due rotte.
 ### Step 3 - Bonus
