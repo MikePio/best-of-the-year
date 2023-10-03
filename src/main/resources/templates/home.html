@@ -2,35 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<!-- bootstrap -->
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}"/>
+<!-- css -->
+<link rel="stylesheet" th:href="@{/css/style.css}">
 <title>Home</title>
-<style>
-	body{
-		background-color: #303030;
-		color: white;
-		font-family: Arial, Helvetica, sans-serif;
-	}
-
-	h1{
-		color: #4548FF;
-
-	}
-
-</style>
 </head>
 <body>
 
-  <h1>Home</h1>
+	<div class="container text-center d-flex flex-column align-items-center">
+		<h1>Home</h1>
 
-  <!-- soluzione 1 -->
-  <h2>[[${titleHomePage}]]</h2>
-  <!-- soluzione 2 -->
-	<!-- <h2 th:text="${titleHomePage}"></h2> -->
-  
-  <a href="/movies">Movies</a>
-  <br>
-	<a href="/songs">Songs</a>
-  <br>
-  <a href="/step1">Credits</a>
+		<!-- soluzione 1 -->
+		<h2>[[${titleHomePage}]]</h2>
+		<!-- soluzione 2 -->
+		<!-- <h2 th:text="${titleHomePage}"></h2> -->
+
+		<div class="w-50 d-flex justify-content-between">
+			<a href="/movies">Movies</a>
+			<a href="/songs">Songs</a>
+			<a href="/step1">Credits</a>
+		</div>
+
+	</div>
 
 </body>
 </html>
