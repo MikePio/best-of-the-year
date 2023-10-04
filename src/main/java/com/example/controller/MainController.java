@@ -123,4 +123,14 @@ public class MainController {
     return "song-details";
   }
 
+  @GetMapping("/index")
+  public String PrintIndexVariables(Model model){
+
+    final String titleIndex = "Welcome! \n This is the Index Page";
+
+    model.addAttribute("titleIndex", titleIndex);
+
+    return "index";
+  }
+
 }
