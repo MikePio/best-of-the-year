@@ -28,9 +28,9 @@ public class MainController {
   @GetMapping("/")
   public String PrintName(Model model){
 
-    final String titleHomePage = "Welcome! \n Choose what to see:";
+    final String name = "Michele";
 
-    model.addAttribute("titleHomePage", titleHomePage);
+    model.addAttribute("name", name);
 
     return "home";
   }
@@ -63,7 +63,7 @@ public class MainController {
     List<Song> songs = new ArrayList<>();
 
     songs.add(new Song(1,"Extasi - Fred De Palma"));
-    songs.add(new Song(2,"Anelli e collane- Artie 5ive ft. ANNA"));
+    songs.add(new Song(2,"Anelli e collane - Artie 5ive ft. ANNA"));
     songs.add(new Song(3,"Piove - Lazza, Sfera Ebbasta"));
     songs.add(new Song(4,"Gucci Ski Mask - Lazza, Guè"));
     songs.add(new Song(5,"Michè - Tony Tammaro"));

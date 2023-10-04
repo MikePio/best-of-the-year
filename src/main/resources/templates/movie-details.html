@@ -1,32 +1,34 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<!-- bootstrap -->
-<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}"/>
-<!-- css -->
-<link rel="stylesheet" th:href="@{/css/style.css}">
-<title>Movie</title>
-</head>
-<body>
+<th:block th:replace="../templates/frags/head :: head"></th:block>
 
-	<h1>Best movies of the year: </h1>
-
-  <h2>Movie: <span>[[${movieTitle}]]</span></h2>
-
-  <!-- soluzione 1 -->
-  <p>[[${movies}]]</p>
-  <!-- soluzione 2 -->
-	<!-- <p th:text="${movies}"></p> -->
-
-  <!-- soluzione 1 -->
-	<a href="/">Home</a>
-  <!-- soluzione 2 -->
-  <!-- <a th:href="@{/}">Home</a> -->
+<body class="d-flex flex-column justify-content-between">
   
-	<a href="/songs">Songs</a>
-	<a href="/movies">Movies</a>
-	<a href="/step1">Credits</a>
+  <th:block th:replace="../templates/frags/header :: header"></th:block>
+  
+  <main class="my-5 d-flex flex-column justify-content-center align-items-center">
+
+    <h1>Best movies of the year: </h1>
+
+    <h2>Movie: <span>[[${movieTitle}]]</span></h2>
+
+    <!-- soluzione 1 -->
+    <p>[[${movies}]]</p>
+    <!-- soluzione 2 -->
+    <!-- <p th:text="${movies}"></p> -->
+
+		<div class="d-flex mt-4">
+      <!-- soluzione 1 -->
+      <a class="me-3" href="/">Home</a>
+      <!-- soluzione 2 -->
+      <!-- <a class="me-3" th:href="@{/}">Home</a> -->
+      <a class="me-3" href="/songs">Songs</a>
+      <a class="me-3" href="/movies">Movies</a>
+      <a class="me-3" href="/step1">Credits</a>
+		</div>
+
+  </main>
+
+  <th:block th:replace="../templates/frags/footer :: footer"></th:block>
 
 </body>
+
 </html>
