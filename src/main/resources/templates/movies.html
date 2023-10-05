@@ -15,11 +15,16 @@
 		<!-- soluzione 2 -->
 		<!-- <p th:text="${movies}"></p> -->
 
-		<!-- soluzione 3 -->
 		<ul>
-			<li th:each="movie, index : ${moviesList}">
-				<a th:href="@{/movies/{id}(id=${index.index})}" th:text="${movie.title}"></a>
+  		<!--  * SOLUZIONE 1 OTTENERE AL CLICK DEL PRIMO ELEMENTO L'URL CON INDICE 1 ES. movie 1 = http://localhost:8080/movies/1 -->
+			<!-- <li th:each="movie, index : ${moviesList}">
+				<a th:href="@{/movies/{id}(id=${index.index + 1})}" th:text="${movie.title}"></a>
+			</li> -->
+  		<!--  * SOLUZIONE 2 (MIGLIORE) OTTENERE AL CLICK DEL PRIMO ELEMENTO L'URL CON INDICE 1 ES. movie 1 = http://localhost:8080/movies/1 -->
+			<li th:each="movie : ${moviesList}" th:object="${movie}">
+				<a th:href="@{/movies/{id}(id=*{id})}">[[*{title}]]</a>
 			</li>
+
 		</ul>
 
 		<div class="d-flex mt-4">

@@ -15,11 +15,17 @@
 		<!-- soluzione 2 -->
 		<!-- <p th:text="${songsString}"></p> -->
 
-		<!-- soluzione 3 -->
 		<ul>
-			<li th:each="song, index : ${songsList}">
-				<a th:href="@{/songs/{id}(id=${index.index})}" th:text="${song.title}"></a>
+
+		 	<!-- * SOLUZIONE 1 OTTENERE AL CLICK DEL PRIMO ELEMENTO L'URL CON INDICE 1 ES. song 1 = http://localhost:8080/songs/1 -->
+			<!-- <li th:each="song, index : ${songsList}">
+				<a th:href="@{/songs/{id}(id=${index.index + 1})}" th:text="${song.title}"></a>
+			</li> -->
+			<!-- * SOLUZIONE 2 (MIGLIORE) OTTENERE AL CLICK DEL PRIMO ELEMENTO L'URL CON INDICE 1 ES. song 1 = http://localhost:8080/songs/1 -->
+			<li th:each="song : ${songsList}" th:object="${song}">
+				<a th:href="@{/songs/{id}(id=*{id})}">[[*{title}]]</a>
 			</li>
+			
 		</ul>
 
 		<div class="d-flex mt-4">

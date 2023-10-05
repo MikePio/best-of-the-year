@@ -1,6 +1,9 @@
 <th:block th:replace="../templates/frags/head :: head"></th:block>
 
-<body class="d-flex flex-column justify-content-between">
+<!-- * SOLUZIONE 1 (STEP 1) OTTENERE AL CLICK DEL PRIMO ELEMENTO L'URL CON INDICE 1 ES. movie 1 = http://localhost:8080/movies/1 -->
+<!-- <body class="d-flex flex-column justify-content-between"> -->
+<!-- * SOLUZIONE 2 (STEP 1) (MIGLIORE) OTTENERE AL CLICK DEL PRIMO ELEMENTO L'URL CON INDICE 1 ES. movie 1 = http://localhost:8080/movies/1 -->
+<body class="d-flex flex-column justify-content-between" th:object="${movie}">
   
   <th:block th:replace="../templates/frags/header :: header"></th:block>
   
@@ -8,7 +11,10 @@
 
     <h1>Best movies of the year: </h1>
 
-    <h2>Movie: <span>[[${movieTitle}]]</span></h2>
+    <!-- * SOLUZIONE 1 (STEP 2) OTTENERE AL CLICK DEL PRIMO ELEMENTO L'URL CON INDICE 1 ES. movie 1 = http://localhost:8080/movies/1 -->
+    <!-- <h2>Movie: <span>[[${movieTitle}]]<span></h2> -->
+    <!-- * SOLUZIONE 2 (STEP 2) (MIGLIORE) OTTENERE AL CLICK DEL PRIMO ELEMENTO L'URL CON INDICE 1 ES. movie 1 = http://localhost:8080/movies/1 -->
+    <h2>Movie: <span>[[*{title}]]<span></h2>
 
     <!-- soluzione 1 -->
     <p>[[${movies}]]</p>

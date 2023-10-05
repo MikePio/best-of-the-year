@@ -101,27 +101,55 @@ public class MainController {
       return "songs"; // nome della view(/pagina HTML) da visualizzare
   }
 
+  // * SOLUZIONE 1 OTTENERE AL CLICK DEL PRIMO ELEMENTO L'URL CON INDICE 1 ES. movie 1 = http://localhost:8080/movies/1
+  // @GetMapping("/movies/{id}")
+  // public String getMovieDetails(@PathVariable int id, Model model){
+
+  //   Movie movieId = getBestMovies().get(id-1);
+  //   String movieTitle = movieId.getTitle();
+
+  //   model.addAttribute("movieTitle", movieTitle);
+
+  //   return "movie-details";
+  // }
+
+  // * SOLUZIONE 2 (MIGLIORE) OTTENERE AL CLICK DEL PRIMO ELEMENTO L'URL CON INDICE 1 ES. movie 1 = http://localhost:8080/movies/1
   @GetMapping("/movies/{id}")
-  public String getMovieDetails(@PathVariable int id, Model model){
+	public String getMovieDetails(@PathVariable int id, Model model) {
+		
+		Movie movie = getBestMovies().stream()
+						.filter(s -> s.getId() == id)
+					.findFirst().get();
 
-    Movie movieId = getBestMovies().get(id);
-    String movieTitle = movieId.getTitle();
+		model.addAttribute("movie", movie);
 
-    model.addAttribute("movieTitle", movieTitle);
+		return "movie-details";
+	}
 
-    return "movie-details";
-  }
+  // * SOLUZIONE 1 OTTENERE AL CLICK DEL PRIMO ELEMENTO L'URL CON INDICE 1 ES. song 1 = http://localhost:8080/songs/1
+  // @GetMapping("/songs/{id}")
+  // public String getSongDetails(@PathVariable int id, Model model){
 
+  //   Song songId = getBestSongs().get(id-1);
+  //   String songTitle = songId.getTitle();
+
+  //   model.addAttribute("songTitle", songTitle);
+
+  //   return "song-details";
+  // }
+
+  // * SOLUZIONE 2 (MIGLIORE) OTTENERE AL CLICK DEL PRIMO ELEMENTO L'URL CON INDICE 1 ES. song 1 = http://localhost:8080/songs/1
   @GetMapping("/songs/{id}")
-  public String getSongDetails(@PathVariable int id, Model model){
+	public String getSongDetails(@PathVariable int id, Model model) {
+		
+		Song song = getBestSongs().stream()
+						.filter(s -> s.getId() == id)
+					.findFirst().get();
 
-    Song songId = getBestSongs().get(id);
-    String songTitle = songId.getTitle();
+		model.addAttribute("song", song);
 
-    model.addAttribute("songTitle", songTitle);
-
-    return "song-details";
-  }
+		return "song-details";
+	}
 
   @GetMapping("/index")
   public String PrintIndexVariables(Model model){
